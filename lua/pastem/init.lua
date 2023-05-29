@@ -31,6 +31,7 @@ M.paster = function(motion)
 	local ending = vim.api.nvim_buf_get_mark(0, "]")
 	local lines = utils.get_lines()
 	vim.api.nvim_buf_set_text(0, starting[1]-1, starting[2], ending[1]-1, ending[2]+1, lines)
+	vim.fn.setpos(".", {0, starting[1], starting[2]+1, 0})
 end
 
 M.pasterline = function(motion)
@@ -41,6 +42,7 @@ M.pasterline = function(motion)
 	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 	local lines = utils.get_lines()
 	vim.api.nvim_buf_set_text(0, row-1, utils.get_non_zero_idx(), row-1, vim.fn.col('$')-1, lines)
+	vim.fn.setpos(".", {0, row, utils.get_non_zero_idx()+1, 0})
 end
 
 M.apply_config = function(config)
