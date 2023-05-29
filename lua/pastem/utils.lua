@@ -4,7 +4,7 @@ utils.get_lines = function()
 	local text = vim.fn.getreg(vim.v.register)
 	lines = {}
 	for s in text:gmatch("[^\r\n]+") do
-		table.insert(lines, s)
+		table.insert(lines, vim.trim(s))
 	end
 	return lines
 end
